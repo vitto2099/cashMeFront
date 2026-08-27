@@ -39,8 +39,8 @@ O app estará acessível em: `http://localhost:5173/`
 ```
 
 > [!NOTE]
-> O backlog detalhado com os 14 épicos futuros do aplicativo do consumidor está documentado em:
-> 👉 [PLANEJAMENTO_CONSUMIDOR.md](file:///c:/Users/vck98/OneDrive/Área%20de%20Trabalho/Estagio/CashMeFront/PLANEJAMENTO_CONSUMIDOR.md)
+> - **Backlog de Épicos do Consumidor:** 👉 [PLANEJAMENTO_CONSUMIDOR.md](file:///c:/Users/vck98/OneDrive/Área%20de%20Trabalho/Estagio/CashMeFront/PLANEJAMENTO_CONSUMIDOR.md)
+> - **Plano de Otimização & Refatoração:** 👉 [PLANO_DE_OTIMIZACAO.md](file:///c:/Users/vck98/OneDrive/Área%20de%20Trabalho/Estagio/CashMeFront/PLANO_DE_OTIMIZACAO.md)
 
 ---
 
