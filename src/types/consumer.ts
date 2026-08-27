@@ -1,6 +1,9 @@
 import type { ComponentType } from "react";
 
-export interface Store {
+/**
+ * Modelo de Loja Parceira
+ */
+export interface Loja {
   id: number;
   name: string;
   cat: string;
@@ -11,7 +14,10 @@ export interface Store {
   bg: string;
 }
 
-export interface Offer {
+/**
+ * Modelo de Oferta / Cupom de Desconto
+ */
+export interface Oferta {
   id: number;
   store: string;
   pts: number;
@@ -21,7 +27,10 @@ export interface Offer {
   img: string;
 }
 
-export interface Transaction {
+/**
+ * Modelo de Transação / Extrato de Pontos
+ */
+export interface Transacao {
   id: number;
   type: "earn" | "redeem";
   store: string;
@@ -31,9 +40,18 @@ export interface Transaction {
   balance: string;
 }
 
-export interface CategoryItem {
+/**
+ * Categoria de Estabelecimentos
+ */
+export interface ItemCategoria {
   name: string;
   Icon: ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
   color: string;
   bg: string;
 }
+
+// Aliases para compatibilidade
+export type Store = Loja;
+export type Offer = Oferta;
+export type Transaction = Transacao;
+export type CategoryItem = ItemCategoria;

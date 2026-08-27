@@ -1,6 +1,15 @@
+/**
+ * Modos de entrada da aplicação:
+ * - 'landing': Tela inicial de seleção de perfil
+ * - 'consumer': Aplicativo na visão do Consumidor
+ * - 'merchant': Aplicativo na visão do Comerciante / Lojista
+ */
 export type AppMode = "landing" | "consumer" | "merchant";
 
-export type ConsumerScreen =
+/**
+ * Identificadores de tela do módulo do Consumidor
+ */
+export type TelaConsumidor =
   | "home"
   | "categories"
   | "stores"
@@ -11,7 +20,10 @@ export type ConsumerScreen =
   | "qr-code"
   | "profile";
 
-export type MerchantScreen =
+/**
+ * Identificadores de tela do módulo do Comerciante
+ */
+export type TelaComerciante =
   | "dashboard"
   | "campaigns"
   | "new-campaign"
@@ -23,3 +35,8 @@ export type MerchantScreen =
   | "vitrine"
   | "new-offer"
   | "settings";
+
+// Aliases para compatibilidade
+export type ConsumerScreen = TelaConsumidor;
+export type MerchantScreen = TelaComerciante;
+export type ModoAplicativo = AppMode;

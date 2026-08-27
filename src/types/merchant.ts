@@ -1,4 +1,7 @@
-export interface Customer {
+/**
+ * Modelo de Cliente Fidelizado na visão do Comerciante
+ */
+export interface Cliente {
   id: number;
   name: string;
   pts: number;
@@ -7,7 +10,10 @@ export interface Customer {
   purchases: string;
 }
 
-export interface MerchantOffer {
+/**
+ * Modelo de Oferta criada pelo Comerciante na Vitrine
+ */
+export interface OfertaComerciante {
   id: number;
   name: string;
   desc: string;
@@ -15,14 +21,26 @@ export interface MerchantOffer {
   active: boolean;
 }
 
-export interface Campaign {
+/**
+ * Modelo de Campanha Promocional do Lojista
+ */
+export interface Campanha {
   name: string;
   period: string;
   rule: string;
   active: boolean;
 }
 
-export interface ChartPoint {
+/**
+ * Ponto de dados para o gráfico de evolução de faturamento/pontos
+ */
+export interface PontoGrafico {
   d: string;
   v: number;
 }
+
+// Aliases para compatibilidade
+export type Customer = Cliente;
+export type MerchantOffer = OfertaComerciante;
+export type Campaign = Campanha;
+export type ChartPoint = PontoGrafico;
