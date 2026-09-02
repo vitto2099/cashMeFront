@@ -16,18 +16,9 @@ export function BotaoVoltar({ aoVoltar, claro = true }: BotaoVoltarProps) {
     <button
       onClick={aoVoltar}
       aria-label="Voltar"
-      style={{
-        width: 36,
-        height: 36,
-        borderRadius: "50%",
-        background: claro ? "#F3F4F6" : "rgba(255,255,255,0.2)",
-        border: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        flexShrink: 0,
-      }}
+      className={`w-9 h-9 rounded-full border-none flex items-center justify-center cursor-pointer shrink-0 transition-transform active:scale-95 ${
+        claro ? "bg-gray-100 hover:bg-gray-200" : "bg-white/20 hover:bg-white/30"
+      }`}
     >
       <ChevronLeft size={20} color={claro ? T1 : "#fff"} />
     </button>
@@ -38,3 +29,4 @@ export function BotaoVoltar({ aoVoltar, claro = true }: BotaoVoltarProps) {
 export const BackBtn = ({ onBack, light = true }: { onBack: () => void; light?: boolean }) => (
   <BotaoVoltar aoVoltar={onBack} claro={light} />
 );
+

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ShoppingBag, Bell, Star, ChevronRight, Coffee, Pill, Shirt } from "lucide-react";
-import { G, GD, GVL, GOLD, T1, T2, BG, BD } from "@/constants/theme";
-import { offers } from "@/data/mocks";
+import { ShoppingBag, Bell, Star, ChevronRight } from "lucide-react";
+import { G, GD, GOLD } from "@/constants/theme";
+import { offers, categories } from "@/data/mocks";
+import { useApp } from "@/context/AppContext";
 import type { ConsumerScreen } from "@/types/navigation";
 
 interface HomeScreenProps {
@@ -10,71 +11,96 @@ interface HomeScreenProps {
 
 export function HomeScreen({ go }: HomeScreenProps) {
   const [slide, setSlide] = useState(0);
-  const cats = [
-    { name: "Alimentação", Icon: Coffee, color: "#92400E", bg: "#FEF3C7" },
-    { name: "Bebidas", Icon: ShoppingBag, color: "#1E40AF", bg: "#DBEAFE" },
-    { name: "Farmácias", Icon: Pill, color: "#166534", bg: "#DCFCE7" },
-    { name: "Moda", Icon: Shirt, color: "#6B21A8", bg: "#F3E8FF" },
-  ];
+  const { userName, userPoints } = useApp();
 
   return (
-    <div style={{ flex: 1, overflow: "auto", background: BG }}>
-      {/* header */}
-      <div style={{ background: "#fff", padding: "0 16px 16px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 30, height: 30, background: G, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <div className="flex-1 overflow-y-auto bg-[#F7F8FA]">
+      {/* Header */}
+      <div className="bg-white px-4 pb-4">
+        <div className="flex justify-between items-center mb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-[30px] h-[30px] bg-[#008D4C] rounded-lg flex items-center justify-center shadow-xs">
               <ShoppingBag size={16} color="#fff" />
             </div>
-            <span style={{ fontSize: 18, fontWeight: 700, color: G, letterSpacing: -0.5 }}>cash me</span>
+            <span className="text-lg font-bold text-[#008D4C] tracking-tight">cash me</span>
           </div>
-          <button style={{ width: 40, height: 40, borderRadius: "50%", background: GVL, border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", position: "relative" }}>
+          <button
+            aria-label="Notificações"
+            className="w-10 h-10 rounded-full bg-[#F4FAF6] border-none flex items-center justify-center cursor-pointer relative hover:bg-emerald-100/50 transition-colors"
+          >
             <Bell size={20} color={G} />
-            <div style={{ position: "absolute", top: 9, right: 9, width: 8, height: 8, background: GOLD, borderRadius: "50%", border: "2px solid #fff" }} />
+            <div className="absolute top-[9px] right-[9px] w-2 h-2 bg-[#F5B800] rounded-full border-2 border-white" />
           </button>
         </div>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: T1, margin: "0 0 4px" }}>Olá, Leandro! 👋</h1>
-        <p style={{ fontSize: 13, color: T2, margin: 0, lineHeight: 1.5 }}>Descubra ofertas incríveis e acumule pontos nas melhores lojas da cidade.</p>
+        <h1 className="text-[22px] font-bold text-gray-900 mb-1">Olá, {userName}! 👋</h1>
+        <p className="text-xs text-gray-500 m-0 leading-relaxed">
+          Descubra ofertas incríveis e acumule pontos nas melhores lojas da cidade.
+        </p>
       </div>
 
-      {/* points card */}
-      <div style={{ margin: "16px", borderRadius: 18, background: `linear-gradient(135deg,${G},${GD})`, padding: 20, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", right: -24, top: -24, width: 120, height: 120, borderRadius: "50%", background: "rgba(255,255,255,0.08)" }} />
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", position: "relative" }}>
+      {/* Points Card */}
+      <div
+        className="mx-4 my-4 rounded-2xl p-5 relative overflow-hidden shadow-md"
+        style={{ background: `linear-gradient(135deg,${G},${GD})` }}
+      >
+        <div className="absolute -right-6 -top-6 w-[120px] h-[120px] rounded-full bg-white/10 pointer-events-none" />
+        <div className="flex justify-between items-start relative z-10">
           <div>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", margin: "0 0 4px" }}>Seus pontos totais</p>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
-              <span style={{ fontSize: 38, fontWeight: 700, color: "#fff", lineHeight: 1 }}>1.250</span>
-              <span style={{ fontSize: 16, fontWeight: 600, color: "rgba(255,255,255,0.75)" }}>pts</span>
+            <p className="text-xs text-white/80 mb-1 font-medium">Seus pontos totais</p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-4xl font-bold text-white leading-none">
+                {userPoints.toLocaleString("pt-BR")}
+              </span>
+              <span className="text-base font-semibold text-white/80">pts</span>
             </div>
-            <p style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", margin: "4px 0 0" }}>em todas as lojas</p>
+            <p className="text-xs text-white/70 mt-1 mb-0">em todas as lojas</p>
           </div>
-          <div style={{ width: 48, height: 48, background: "rgba(255,255,255,0.15)", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div className="w-12 h-12 bg-white/15 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-xs">
             <Star size={24} color={GOLD} fill={GOLD} />
           </div>
         </div>
       </div>
 
-      {/* highlights carousel */}
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 16px 10px" }}>
-          <h3 style={{ fontSize: 16, fontWeight: 600, color: T1, margin: 0 }}>Destaques para você</h3>
-          <button onClick={() => go("offers")} style={{ fontSize: 13, color: G, background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>Ver todos</button>
+      {/* Highlights Carousel */}
+      <div className="mb-4">
+        <div className="flex justify-between items-center px-4 pb-2.5">
+          <h2 className="text-base font-semibold text-gray-900 m-0">Destaques para você</h2>
+          <button
+            onClick={() => go("offers")}
+            className="text-xs text-[#008D4C] bg-transparent border-none cursor-pointer font-semibold hover:underline"
+          >
+            Ver todos
+          </button>
         </div>
-        <div style={{ paddingLeft: 16, overflow: "hidden" }}>
-          <div style={{ display: "flex", gap: 12, transform: `translateX(-${slide * 308}px)`, transition: "transform 0.3s ease" }}>
+        <div className="pl-4 overflow-hidden">
+          <div
+            className="flex gap-3 transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${slide * 308}px)` }}
+          >
             {offers.map((o) => (
-              <div key={o.id} onClick={() => go("offer-detail")} style={{ width: 296, borderRadius: 16, overflow: "hidden", boxShadow: "0 4px 14px rgba(0,0,0,0.1)", cursor: "pointer", flexShrink: 0, background: "#fff" }}>
-                <div style={{ height: 130, background: o.bg, position: "relative" }}>
-                  <img src={o.img} alt={o.store} style={{ width: "100%", height: "100%", objectFit: "cover", opacity: 0.38 }} />
-                  <div style={{ position: "absolute", top: 12, left: 12 }}>
-                    <span style={{ background: "rgba(255,255,255,0.92)", borderRadius: 8, padding: "4px 10px", fontSize: 12, fontWeight: 600, color: T1 }}>{o.store}</span>
+              <div
+                key={o.id}
+                onClick={() => go("offer-detail")}
+                className="w-[296px] rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer shrink-0 bg-white border border-gray-100"
+              >
+                <div className="h-[130px] relative overflow-hidden" style={{ background: o.bg }}>
+                  <img
+                    src={o.img}
+                    alt={o.store}
+                    className="w-full h-full object-cover opacity-40 hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-white/95 backdrop-blur-xs rounded-lg px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-xs">
+                      {o.store}
+                    </span>
                   </div>
                 </div>
-                <div style={{ padding: "10px 14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div className="p-3 px-3.5 flex justify-between items-center">
                   <div>
-                    <p style={{ fontSize: 14, fontWeight: 700, color: T1, margin: "0 0 2px" }}>{o.pts} pts = {o.discount}</p>
-                    <p style={{ fontSize: 11, color: T2, margin: 0 }}>Válido até {o.valid}</p>
+                    <p className="text-sm font-bold text-gray-900 mb-0.5">
+                      {o.pts} pts = {o.discount}
+                    </p>
+                    <p className="text-[11px] text-gray-500 m-0">Válido até {o.valid}</p>
                   </div>
                   <ChevronRight size={18} color={G} />
                 </div>
@@ -82,26 +108,47 @@ export function HomeScreen({ go }: HomeScreenProps) {
             ))}
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "center", gap: 6, marginTop: 10 }}>
+        <div className="flex justify-center gap-1.5 mt-2.5">
           {offers.map((_, i) => (
-            <button key={i} onClick={() => setSlide(i)} style={{ width: slide === i ? 20 : 6, height: 6, borderRadius: 3, background: slide === i ? G : "#D1D5DB", border: "none", cursor: "pointer", padding: 0, transition: "all 0.2s" }} />
+            <button
+              key={i}
+              onClick={() => setSlide(i)}
+              aria-label={`Slide ${i + 1}`}
+              className={`h-1.5 rounded-full border-none cursor-pointer p-0 transition-all duration-200 ${
+                slide === i ? "w-5 bg-[#008D4C]" : "w-1.5 bg-gray-300"
+              }`}
+            />
           ))}
         </div>
       </div>
 
-      {/* categories */}
-      <div style={{ margin: "0 16px 24px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 600, color: T1, margin: 0 }}>Categorias</h3>
-          <button onClick={() => go("categories")} style={{ fontSize: 13, color: G, background: "none", border: "none", cursor: "pointer", fontWeight: 500 }}>Ver todas</button>
+      {/* Categories */}
+      <div className="mx-4 mb-6">
+        <div className="flex justify-between items-center mb-3">
+          <h2 className="text-base font-semibold text-gray-900 m-0">Categorias</h2>
+          <button
+            onClick={() => go("categories")}
+            className="text-xs text-[#008D4C] bg-transparent border-none cursor-pointer font-semibold hover:underline"
+          >
+            Ver todas
+          </button>
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
-          {cats.map((cat) => (
-            <button key={cat.name} onClick={() => go("stores")} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, padding: "12px 10px", background: "#fff", borderRadius: 12, border: `1px solid ${BD}`, cursor: "pointer", flex: 1 }}>
-              <div style={{ width: 40, height: 40, borderRadius: 10, background: cat.bg, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="grid grid-cols-4 gap-2.5">
+          {categories.map((cat) => (
+            <button
+              key={cat.name}
+              onClick={() => go("stores")}
+              className="flex flex-col items-center gap-1.5 p-3 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-[#008D4C]/40 hover:shadow-xs transition-all active:scale-95"
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center shadow-xs"
+                style={{ background: cat.bg }}
+              >
                 <cat.Icon size={20} color={cat.color} />
               </div>
-              <span style={{ fontSize: 10, fontWeight: 500, color: T1, textAlign: "center", lineHeight: 1.2 }}>{cat.name}</span>
+              <span className="text-[10px] font-medium text-gray-800 text-center leading-tight">
+                {cat.name}
+              </span>
             </button>
           ))}
         </div>
@@ -109,3 +156,4 @@ export function HomeScreen({ go }: HomeScreenProps) {
     </div>
   );
 }
+

@@ -15,18 +15,14 @@ export function AvatarUsuario({ nome, tamanho = 42 }: AvatarUsuarioProps) {
   const fundo = paleta[nome.charCodeAt(0) % paleta.length];
   return (
     <div
+      className="rounded-full flex items-center justify-center shrink-0 font-bold text-white shadow-xs"
       style={{
         width: tamanho,
         height: tamanho,
-        borderRadius: "50%",
         background: fundo,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
       }}
     >
-      <span style={{ fontSize: tamanho * 0.4, fontWeight: 700, color: "#fff" }}>{nome[0]}</span>
+      <span style={{ fontSize: tamanho * 0.4 }}>{nome[0]}</span>
     </div>
   );
 }

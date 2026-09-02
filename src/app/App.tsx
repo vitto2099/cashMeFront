@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BG } from "@/constants/theme";
 import { StatusBar } from "@/components/common";
 import { LandingScreen } from "@/features/landing";
 import { ConsumerApp } from "@/features/consumer";
@@ -10,52 +9,17 @@ export default function App() {
   const [mode, setMode] = useState<AppMode>("landing");
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg,#0f0c29,#302b63,#24243e)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px 20px 80px",
-        fontFamily: "'Inter', -apple-system, sans-serif",
-      }}
-    >
-      {/* Phone frame */}
-      <div
-        style={{
-          width: 390,
-          height: 844,
-          borderRadius: 50,
-          overflow: "hidden",
-          background: BG,
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          boxShadow:
-            "0 50px 100px rgba(0,0,0,0.6), 0 0 0 1.5px rgba(255,255,255,0.12), inset 0 0 0 2px rgba(255,255,255,0.06)",
-        }}
-      >
-        {/* Dynamic island notch */}
-        <div
-          style={{
-            position: "absolute",
-            top: 13,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 120,
-            height: 34,
-            background: "#000",
-            borderRadius: 20,
-            zIndex: 200,
-          }}
-        />
+    <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] flex items-center justify-center p-0 sm:p-5 sm:pb-20 font-sans">
+      {/* Phone frame (responsivo: tela cheia no mobile, frame simulado no desktop) */}
+      <div className="w-full sm:w-[390px] h-screen sm:h-[844px] sm:rounded-[50px] overflow-hidden bg-[#F7F8FA] relative flex flex-col sm:shadow-[0_50px_100px_rgba(0,0,0,0.6),0_0_0_1.5px_rgba(255,255,255,0.12),inset_0_0_0_2px_rgba(255,255,255,0.06)]">
+        {/* Dynamic island notch (apenas no frame desktop) */}
+        <div className="hidden sm:block absolute top-[13px] left-1/2 -translate-x-1/2 w-[120px] h-[34px] bg-black rounded-[20px] z-50 pointer-events-none" />
 
         {/* Screen Content */}
-        <div style={{ flex: 1, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+        <div className="flex-1 overflow-hidden flex flex-col">
           {mode === "landing" && (
             <>
-              <div style={{ background: BG }}>
+              <div className="bg-[#F7F8FA]">
                 <StatusBar light />
               </div>
               <LandingScreen onSelect={setMode} />
@@ -65,63 +29,26 @@ export default function App() {
           {mode === "merchant" && <MerchantApp />}
         </div>
 
-        {/* Home indicator */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 8,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 130,
-            height: 5,
-            background: "rgba(0,0,0,0.2)",
-            borderRadius: 3,
-          }}
-        />
+        {/* Home indicator (apenas no frame desktop) */}
+        <div className="hidden sm:block absolute bottom-2 left-1/2 -translate-x-1/2 w-[130px] h-[5px] bg-black/20 rounded-[3px] pointer-events-none" />
       </div>
 
       {/* Mode switcher floating bar */}
       {mode !== "landing" && (
-        <div
-          style={{
-            position: "fixed",
-            bottom: 20,
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: 10,
-            zIndex: 1000,
-          }}
-        >
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 flex gap-2.5 z-50">
           <button
             onClick={() => setMode("landing")}
-            style={{
-              padding: "10px 18px",
-              background: "rgba(255,255,255,0.12)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              borderRadius: 20,
-              color: "#fff",
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
+            className="px-4 py-2.5 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/20 rounded-full text-white text-xs font-semibold cursor-pointer transition-all shadow-lg active:scale-95"
           >
             ← Início
           </button>
           <button
             onClick={() => setMode(mode === "consumer" ? "merchant" : "consumer")}
-            style={{
-              padding: "10px 18px",
-              background: mode === "consumer" ? "rgba(111,53,181,0.85)" : "rgba(0,141,76,0.85)",
-              backdropFilter: "blur(12px)",
-              border: "none",
-              borderRadius: 20,
-              color: "#fff",
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
+            className={`px-4 py-2.5 backdrop-blur-md border-none rounded-full text-white text-xs font-semibold cursor-pointer transition-all shadow-lg active:scale-95 ${
+              mode === "consumer"
+                ? "bg-[#6F35B5]/90 hover:bg-[#6F35B5]"
+                : "bg-[#008D4C]/90 hover:bg-[#008D4C]"
+            }`}
           >
             {mode === "consumer" ? "🏪 Modo Comerciante" : "👤 Modo Consumidor"}
           </button>
@@ -130,3 +57,4 @@ export default function App() {
     </div>
   );
 }
+

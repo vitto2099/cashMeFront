@@ -19,28 +19,23 @@ export interface BarraNavegacaoProps {
  */
 export function BarraNavegacao({ abas, abaAtiva, aoMudarAba, corDestaque }: BarraNavegacaoProps) {
   return (
-    <nav style={{ height: 76, borderTop: `1px solid ${BD}`, display: "flex", background: "#fff", flexShrink: 0 }}>
+    <nav className="h-[76px] border-t border-gray-200 flex bg-white shrink-0 items-center justify-around z-30">
       {abas.map((aba) => {
         const ativo = aba.id === abaAtiva;
         return (
           <button
             key={aba.id}
             onClick={() => aoMudarAba(aba.id)}
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 4,
-              border: "none",
-              background: "none",
-              cursor: "pointer",
-              padding: "8px 0",
-            }}
+            className="flex-1 flex flex-col items-center justify-center gap-1 border-none bg-transparent cursor-pointer py-2 transition-colors"
           >
             <aba.Icon size={22} color={ativo ? corDestaque : "#9CA3AF"} strokeWidth={ativo ? 2.5 : 1.5} />
-            <span style={{ fontSize: 10, fontWeight: ativo ? 600 : 400, color: ativo ? corDestaque : "#9CA3AF" }}>
+            <span
+              className="text-[10px] tracking-tight"
+              style={{
+                fontWeight: ativo ? 600 : 400,
+                color: ativo ? corDestaque : "#9CA3AF",
+              }}
+            >
               {aba.label}
             </span>
           </button>
