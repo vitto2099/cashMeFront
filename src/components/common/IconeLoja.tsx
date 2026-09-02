@@ -15,18 +15,15 @@ export interface IconeLojaProps {
 export function IconeLoja({ nome, cor, fundo, tamanho = 48 }: IconeLojaProps) {
   return (
     <div
+      className="flex items-center justify-center shrink-0 font-bold shadow-xs"
       style={{
         width: tamanho,
         height: tamanho,
         borderRadius: tamanho * 0.25,
         background: fundo,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
       }}
     >
-      <span style={{ fontSize: tamanho * 0.38, fontWeight: 700, color: cor }}>{nome[0]}</span>
+      <span style={{ fontSize: tamanho * 0.38, color: cor }}>{nome[0]}</span>
     </div>
   );
 }

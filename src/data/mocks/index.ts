@@ -4,3 +4,5 @@ export * from "./offers";
 export * from "./history";
 export * from "./customers";
 export * from "./merchantOffers";
+export * from "./categories";
+

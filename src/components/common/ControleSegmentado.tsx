@@ -16,28 +16,23 @@ export interface ControleSegmentadoProps {
  */
 export function ControleSegmentado({ abas, abaAtiva, aoMudar }: ControleSegmentadoProps) {
   return (
-    <div style={{ display: "flex", background: "#F3F4F6", borderRadius: 10, padding: 3, margin: "0 16px" }}>
-      {abas.map((aba) => (
-        <button
-          key={aba.id}
-          onClick={() => aoMudar(aba.id)}
-          style={{
-            flex: 1,
-            padding: "8px 0",
-            borderRadius: 8,
-            background: abaAtiva === aba.id ? "#fff" : "none",
-            border: "none",
-            fontSize: 13,
-            fontWeight: abaAtiva === aba.id ? 600 : 400,
-            color: abaAtiva === aba.id ? T1 : T2,
-            cursor: "pointer",
-            boxShadow: abaAtiva === aba.id ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
-            transition: "all 0.18s",
-          }}
-        >
-          {aba.label}
-        </button>
-      ))}
+    <div className="flex bg-gray-100 rounded-xl p-1 mx-4 gap-1">
+      {abas.map((aba) => {
+        const ativo = abaAtiva === aba.id;
+        return (
+          <button
+            key={aba.id}
+            onClick={() => aoMudar(aba.id)}
+            className={`flex-1 py-2 rounded-lg border-none text-xs font-medium cursor-pointer transition-all duration-200 ${
+              ativo
+                ? "bg-white text-gray-900 font-semibold shadow-xs"
+                : "bg-transparent text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            {aba.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

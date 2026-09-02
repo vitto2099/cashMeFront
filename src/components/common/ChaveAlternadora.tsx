@@ -16,30 +16,17 @@ export function ChaveAlternadora({ ativo, aoAlternar, corDestaque = P }: ChaveAl
   return (
     <button
       onClick={aoAlternar}
+      aria-checked={ativo}
+      role="switch"
+      className="w-12 h-7 rounded-full border-none relative cursor-pointer shrink-0 transition-colors duration-200 focus:outline-none"
       style={{
-        width: 48,
-        height: 28,
-        borderRadius: 14,
         background: ativo ? corDestaque : "#D1D5DB",
-        border: "none",
-        position: "relative",
-        cursor: "pointer",
-        flexShrink: 0,
-        transition: "background 0.2s",
       }}
     >
       <div
-        style={{
-          position: "absolute",
-          width: 22,
-          height: 22,
-          borderRadius: "50%",
-          background: "#fff",
-          top: 3,
-          left: ativo ? 23 : 3,
-          transition: "left 0.2s",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-        }}
+        className={`absolute w-[22px] h-[22px] rounded-full bg-white top-[3px] shadow-sm transition-all duration-200 ${
+          ativo ? "left-[23px]" : "left-[3px]"
+        }`}
       />
     </button>
   );

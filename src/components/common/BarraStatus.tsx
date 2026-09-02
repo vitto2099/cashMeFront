@@ -11,27 +11,19 @@ export interface BarraStatusProps {
 export function BarraStatus({ claro = true }: BarraStatusProps) {
   const cor = claro ? T1 : "#fff";
   return (
-    <div
-      style={{
-        height: 44,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 20px",
-        flexShrink: 0,
-      }}
-    >
-      <span style={{ fontSize: 15, fontWeight: 600, color: cor }}>9:41</span>
-      <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-        <div style={{ display: "flex", gap: 2, alignItems: "flex-end" }}>
+    <div className="h-11 flex items-center justify-between px-5 shrink-0 select-none">
+      <span className="text-sm font-semibold tracking-tight" style={{ color: cor }}>
+        9:41
+      </span>
+      <div className="flex gap-1.5 items-center">
+        <div className="flex gap-0.5 items-end h-3">
           {[3, 5, 7, 9].map((altura, i) => (
             <div
               key={i}
+              className="w-[3px] rounded-xs"
               style={{
-                width: 3,
                 height: altura,
                 background: cor,
-                borderRadius: 1,
                 opacity: i < 3 ? 1 : 0.4,
               }}
             />
@@ -49,17 +41,10 @@ export function BarraStatus({ claro = true }: BarraStatusProps) {
           <circle cx="8" cy="10" r="1.5" fill={cor} />
         </svg>
         <div
-          style={{
-            width: 24,
-            height: 12,
-            border: `1.5px solid ${cor}`,
-            borderRadius: 3,
-            padding: "1.5px 2px",
-            display: "flex",
-            alignItems: "center",
-          }}
+          className="w-6 h-3 rounded-[3px] p-[1.5px] flex items-center"
+          style={{ border: `1.5px solid ${cor}` }}
         >
-          <div style={{ width: "70%", height: "100%", background: cor, borderRadius: 1.5 }} />
+          <div className="w-[70%] h-full rounded-[1px]" style={{ background: cor }} />
         </div>
       </div>
     </div>

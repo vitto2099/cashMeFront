@@ -10,10 +10,10 @@ export interface CampoFormularioProps {
  */
 export function CampoFormulario({ rotulo, marcador }: CampoFormularioProps) {
   return (
-    <div style={{ background: "#fff", borderRadius: 14, padding: 16, marginBottom: 10, border: `1px solid ${BD}` }}>
-      <label style={{ fontSize: 13, fontWeight: 600, color: T1, display: "block", marginBottom: 8 }}>{rotulo}</label>
-      <div style={{ background: "#F9FAFB", borderRadius: 10, border: `1px solid ${BD}`, padding: "12px 14px" }}>
-        <span style={{ fontSize: 14, color: "#9CA3AF" }}>{marcador}</span>
+    <div className="bg-white rounded-2xl p-4 mb-3 border border-gray-200">
+      <label className="text-xs font-semibold text-gray-900 block mb-2">{rotulo}</label>
+      <div className="bg-gray-50 rounded-xl border border-gray-200 px-3.5 py-3">
+        <span className="text-sm text-gray-400">{marcador}</span>
       </div>
     </div>
   );

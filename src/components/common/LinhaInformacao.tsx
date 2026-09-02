@@ -13,11 +13,11 @@ export interface LinhaInformacaoProps {
  */
 export function LinhaInformacao({ Icon, titulo, valor, corIcone }: LinhaInformacaoProps) {
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+    <div className="flex gap-2.5 items-center">
       <Icon size={18} color={corIcone} />
       <div>
-        <p style={{ fontSize: 13, fontWeight: 600, color: T1, margin: "0 0 2px" }}>{titulo}</p>
-        <p style={{ fontSize: 12, color: T2, margin: 0 }}>{valor}</p>
+        <p className="text-xs font-semibold text-gray-900 mb-0.5">{titulo}</p>
+        <p className="text-xs text-gray-500 m-0">{valor}</p>
       </div>
     </div>
   );
