@@ -51,11 +51,8 @@ export function MerchantApp() {
   const purpleHeader = navScreens.has(screen);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ background: purpleHeader ? P : "#F8F5FC" }}>
-        <StatusBar light={!purpleHeader} />
-      </div>
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", background: "#F8F5FC" }}>
+    <div className="w-full h-screen flex flex-col bg-[#F8F5FC] overflow-hidden">
+      <div className="flex-1 flex flex-col w-full overflow-hidden bg-[#F8F5FC]">
         {screen === "dashboard" && <DashboardScreen go={go} />}
         {screen === "campaigns" && <CampaignsScreen go={go} />}
         {screen === "new-campaign" && <NewCampaignScreen back={back} />}
@@ -68,7 +65,13 @@ export function MerchantApp() {
         {screen === "new-offer" && <NewOfferScreen back={back} />}
         {screen === "settings" && <SettingsScreen back={back} />}
       </div>
-      {navScreens.has(screen) && <BottomNav tabs={mTabs} active={activeTab} onChange={changeTab} color={P} />}
+      {navScreens.has(screen) && (
+        <div className="w-full bg-white border-t border-gray-200 shrink-0">
+          <div className="max-w-7xl mx-auto">
+            <BottomNav tabs={mTabs} active={activeTab} onChange={changeTab} color={P} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

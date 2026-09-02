@@ -43,11 +43,8 @@ export function ConsumerApp() {
   const navScreens = new Set<ConsumerScreen>(["home", "stores", "wallet", "offers", "profile"]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      <div style={{ background: "#fff" }}>
-        <StatusBar light />
-      </div>
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", background: BG }}>
+    <div className="w-full h-screen flex flex-col bg-[#F7F8FA] overflow-hidden">
+      <div className="flex-1 flex flex-col w-full overflow-hidden bg-[#F7F8FA]">
         {screen === "home" && <HomeScreen go={go} />}
         {screen === "categories" && <CategoriesScreen back={back} go={go} />}
         {screen === "stores" && <StoresScreen back={back} go={go} />}
@@ -58,7 +55,13 @@ export function ConsumerApp() {
         {screen === "qr-code" && <QRCodeScreen back={back} />}
         {screen === "profile" && <ProfileScreen back={back} />}
       </div>
-      {navScreens.has(screen) && <BottomNav tabs={cTabs} active={tab} onChange={changeTab} color={G} />}
+      {navScreens.has(screen) && (
+        <div className="w-full bg-white border-t border-gray-200 shrink-0">
+          <div className="max-w-7xl mx-auto">
+            <BottomNav tabs={cTabs} active={tab} onChange={changeTab} color={G} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

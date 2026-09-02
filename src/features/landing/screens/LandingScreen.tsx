@@ -8,36 +8,55 @@ interface LandingScreenProps {
 
 export function LandingScreen({ onSelect }: LandingScreenProps) {
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: 24, background: BG }}>
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: 80, height: 80, background: `linear-gradient(135deg,${G},${GD})`, borderRadius: 22, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16, boxShadow: `0 10px 28px rgba(0,141,76,0.35)` }}>
-          <ShoppingBag size={40} color="#fff" />
+    <div className="w-full min-h-screen flex flex-col items-center justify-between p-6 sm:p-12 bg-gradient-to-br from-[#F7F8FA] via-[#E7F5ED]/40 to-[#EEE7F7]/40 relative overflow-y-auto">
+      <div className="my-auto flex flex-col items-center justify-center max-w-lg w-full text-center py-8">
+        <div
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl flex items-center justify-center mb-6 shadow-xl"
+          style={{ background: `linear-gradient(135deg,${G},${GD})`, boxShadow: `0 12px 30px rgba(0,141,76,0.35)` }}
+        >
+          <ShoppingBag size={44} color="#fff" />
         </div>
-        <h1 style={{ fontSize: 34, fontWeight: 700, color: T1, margin: "0 0 6px", letterSpacing: -1.5 }}>cash me</h1>
-        <p style={{ fontSize: 15, color: T2, margin: "0 0 48px", textAlign: "center", lineHeight: 1.5 }}>Plataforma de fidelidade para<br />estabelecimentos locais</p>
-        <p style={{ fontSize: 12, fontWeight: 700, color: T2, textTransform: "uppercase", letterSpacing: 1.5, margin: "0 0 18px" }}>Como você quer entrar?</p>
-        <button onClick={() => onSelect("consumer")} style={{ width: "100%", padding: "18px 20px", background: `linear-gradient(135deg,${G},${GD})`, borderRadius: 18, border: "none", marginBottom: 12, display: "flex", alignItems: "center", gap: 16, cursor: "pointer", boxShadow: `0 6px 20px rgba(0,141,76,0.28)` }}>
-          <div style={{ width: 50, height: 50, background: "rgba(255,255,255,0.2)", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <User size={24} color="#fff" />
-          </div>
-          <div style={{ textAlign: "left" }}>
-            <p style={{ fontSize: 16, fontWeight: 700, color: "#fff", margin: "0 0 2px" }}>Sou consumidor</p>
-            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.8)", margin: 0 }}>Acumule e resgate pontos</p>
-          </div>
-          <ChevronRight size={20} color="rgba(255,255,255,0.7)" style={{ marginLeft: "auto" }} />
-        </button>
-        <button onClick={() => onSelect("merchant")} style={{ width: "100%", padding: "18px 20px", background: `linear-gradient(135deg,${P},${PD})`, borderRadius: 18, border: "none", display: "flex", alignItems: "center", gap: 16, cursor: "pointer", boxShadow: `0 6px 20px rgba(111,53,181,0.28)` }}>
-          <div style={{ width: 50, height: 50, background: "rgba(255,255,255,0.2)", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Store size={24} color="#fff" />
-          </div>
-          <div style={{ textAlign: "left" }}>
-            <p style={{ fontSize: 16, fontWeight: 700, color: "#fff", margin: "0 0 2px" }}>Sou comerciante</p>
-            <p style={{ fontSize: 13, color: "rgba(255,255,255,0.8)", margin: 0 }}>Gerencie campanhas e clientes</p>
-          </div>
-          <ChevronRight size={20} color="rgba(255,255,255,0.7)" style={{ marginLeft: "auto" }} />
-        </button>
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-2">cash me</h1>
+        <p className="text-base sm:text-lg text-gray-600 mb-10 max-w-md leading-relaxed">
+          Plataforma de fidelidade para estabelecimentos locais
+        </p>
+
+        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Como você quer entrar?</p>
+
+        <div className="w-full space-y-4 max-w-md">
+          <button
+            onClick={() => onSelect("consumer")}
+            className="w-full p-4 sm:p-5 rounded-2xl border-none flex items-center gap-4 cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
+            style={{ background: `linear-gradient(135deg,${G},${GD})`, boxShadow: `0 8px 24px rgba(0,141,76,0.25)` }}
+          >
+            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+              <User size={26} color="#fff" />
+            </div>
+            <div className="text-left flex-1">
+              <p className="text-base sm:text-lg font-bold text-white mb-0.5">Sou consumidor</p>
+              <p className="text-xs sm:text-sm text-white/80">Acumule e resgate pontos</p>
+            </div>
+            <ChevronRight size={22} color="rgba(255,255,255,0.8)" className="group-hover:translate-x-1 transition-transform" />
+          </button>
+
+          <button
+            onClick={() => onSelect("merchant")}
+            className="w-full p-4 sm:p-5 rounded-2xl border-none flex items-center gap-4 cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all group"
+            style={{ background: `linear-gradient(135deg,${P},${PD})`, boxShadow: `0 8px 24px rgba(111,53,181,0.25)` }}
+          >
+            <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+              <Store size={26} color="#fff" />
+            </div>
+            <div className="text-left flex-1">
+              <p className="text-base sm:text-lg font-bold text-white mb-0.5">Sou comerciante</p>
+              <p className="text-xs sm:text-sm text-white/80">Gerencie campanhas e clientes</p>
+            </div>
+            <ChevronRight size={22} color="rgba(255,255,255,0.8)" className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
       </div>
-      <p style={{ fontSize: 12, color: "#9CA3AF", textAlign: "center", margin: 0 }}>Cash Me © 2026 · v1.0.0</p>
+
+      <p className="text-xs text-gray-400 text-center py-2">Cash Me © 2026 · v1.0.0</p>
     </div>
   );
 }
